@@ -2,7 +2,7 @@
 Context-Aware German Speech Recognition
 # ger-speech-hybrid-asr: Context-Aware German Speech Recognition using Wav2Vec2 & KenLM
 
-A robust, GPU-accelerated pipeline designed to evaluate and improve German Automatic Speech Recognition (ASR). This project bridges the gap between raw acoustic modeling and linguistic context by integrating a **Wav2Vec2 Acoustic Model** with a statistical **n-gram Language Model (KenLM)** using a customized CTC beam search decoder.
+A robust pipeline designed to evaluate and improve German Automatic Speech Recognition (ASR). This project bridges the gap between raw acoustic modeling and linguistic context by integrating a **Wav2Vec2 Acoustic Model** with a statistical **n-gram Language Model (KenLM)** using a customized CTC beam search decoder.
 
 ---
 
