@@ -62,7 +62,7 @@ Models were evaluated on the **German FLEURS test partition** using a Tesla T4 G
 | **CTC + KenLM (Default Beam)** | 0.6749 | **0.1744** | Balanced (~4.89 samples/sec) |
 | **CTC + KenLM (Beam Width = 100)** | *Tuned* | *Tuned* | Computationally intensive |
 
-### Key Architectural Insights for Employers 💡
+### Key Architectural  💡
 
 * **The WER vs. CER Paradox:** By integrating the 3-gram KenLM, the **Character Error Rate (CER) dropped significantly from 18.30% to 17.44%**. This proves that the language model successfully corrects phonetic spelling errors and acoustic typos.
 * **Out-of-Vocabulary (OOV) Bottleneck:** Because the language model was trained on a localized corpus (~3,000 sentences), it struggled with highly diverse words in the test set. In some cases, it overcorrected correct acoustic frames into phonetically close words from the training vocabulary, resulting in a slight increase in WER (from 0.6496 to 0.6749).
