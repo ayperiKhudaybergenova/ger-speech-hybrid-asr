@@ -15,12 +15,12 @@ A robust pipeline designed to evaluate and improve German Automatic Speech Recog
 
 ---
 
-## 🛠️ Tech Stack & Methods
+### Key Architecture  💡
 
-* **Deep Learning:** PyTorch, Hugging Face `transformers` (Wav2Vec2 architecture)
-* **Linguistic Decoding:** `pyctcdecode`, KenLM (3-gram language model compilation)
-* **Audio Engineering:** `librosa`, `soundfile` (in-memory byte decoding, resampling, mono mixing)
-* **Evaluation Metrics:** Hugging Face `evaluate` (Word Error Rate - WER, Character Error Rate - CER)
+* **The WER vs. CER Paradox:** By integrating the 3-gram KenLM, the **Character Error Rate (CER) dropped significantly from 18.30% to 17.44%**. This proves that the language model successfully corrects phonetic spelling errors and acoustic typos.
+* **Out-of-Vocabulary (OOV) Bottleneck:** Because the language model was trained on a localized corpus (~3,000 sentences), it struggled with highly diverse words in the test set. In some cases, it overcorrected correct acoustic frames into phonetically close words from the training vocabulary, resulting in a slight increase in WER (from 0.6496 to 0.6749).
+* **Decoder Beam-Width Sensitivity:** Elevating the beam width to 100 allows the system to evaluate alternate structural hypotheses, improving context correction at the cost of linearly increasing decoding latency.
+
 
 ---
 
@@ -62,13 +62,6 @@ Models were evaluated on the **German FLEURS test partition** using a Tesla T4 G
 | **CTC + KenLM (Default Beam)** | 0.6749 | **0.1744** | Balanced (~4.89 samples/sec) |
 | **CTC + KenLM (Beam Width = 100)** | *Tuned* | *Tuned* | Computationally intensive |
 
-### Key Architectural  💡
-
-* **The WER vs. CER Paradox:** By integrating the 3-gram KenLM, the **Character Error Rate (CER) dropped significantly from 18.30% to 17.44%**. This proves that the language model successfully corrects phonetic spelling errors and acoustic typos.
-* **Out-of-Vocabulary (OOV) Bottleneck:** Because the language model was trained on a localized corpus (~3,000 sentences), it struggled with highly diverse words in the test set. In some cases, it overcorrected correct acoustic frames into phonetically close words from the training vocabulary, resulting in a slight increase in WER (from 0.6496 to 0.6749).
-* **Decoder Beam-Width Sensitivity:** Elevating the beam width to 100 allows the system to evaluate alternate structural hypotheses, improving context correction at the cost of linearly increasing decoding latency.
-
----
 
 ## 🚀 How to Run the Pipeline
 
